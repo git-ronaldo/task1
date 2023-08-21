@@ -15,14 +15,12 @@ const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "",
-    database: 'signup',
-    connectionLimit: 10
+    database: 'signup'
 });
 
 app.post('/register', (req, res) => {
     const { name, email, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, salt);
-
     const sql = "INSERT INTO login (`name`,`email`,`password`) VALUES(?, ?, ?)";
     const values = [name, email, hashedPassword];
 
@@ -36,5 +34,5 @@ app.post('/register', (req, res) => {
 });
 
 app.listen(8081, () => {
-    console.log("Running on port 8081");
+    console.log("Running");
 });
